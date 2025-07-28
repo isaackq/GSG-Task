@@ -3,6 +3,7 @@ import { CourseRepository } from "../repository/course.repository";
 import { BookingRepository } from "../repository/booking.repository";
 import { RoleEnum } from "enums/roles.enum";
 import { BookingStatusEnum } from "enums/booking-status.enum";
+import { CourseCategoryEnum } from "enums/course-category.enum";
 
 async function main() {
   const userRepo = UserRepository.instance;
@@ -33,6 +34,21 @@ async function main() {
 
   console.log("All users:");
   console.log(await userRepo.getAll());
+
+  console.log("--------------------------------");
+
+  console.log("create new course: ");
+  console.log(
+    await courseRepo.create({
+      id: "c4",
+      title: "DevOps Essentials",
+      description:
+        "Learn the fundamentals of DevOps, CI/CD pipelines, and cloud deployment.",
+      instructorId: "u3",
+      category: CourseCategoryEnum.DevOps,
+      durationHours: 6,
+    })
+  );
 
   console.log("--------------------------------");
 
